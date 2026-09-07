@@ -39,8 +39,8 @@
             android:inputType="number"
             android:maxLength="6"
             android:minHeight="48dp"
-            android:hint="@string/enter_amount"
-            tools:ignore="Overlapping"
+            android:hint="@string/amount_field_label"
+            android:contentDescription="@string/amount_field_label"
             android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     <TextView
@@ -58,6 +58,7 @@
         android:textAppearance="?attr/textAppearanceBodyLarge"
         android:textColor="@color/on_colored_background"
         android:textColorHint="@color/on_colored_background"
+        android:importantForAccessibility="no"
         tools:text="$56.32" />
 
     <!-- Fila 1: porcentaje -->
@@ -71,18 +72,20 @@
         android:text="@string/tip_percentage"
         android:textAppearance="?attr/textAppearanceBodyLarge" />
 
-    <SeekBar
-        android:id="@+id/percentSeekBar"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/seekbar_height"
-        android:layout_row="1"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:max="30"
-        android:progress="15"
-        android:progressTint="?attr/colorSecondary"
-        android:thumbTint="?attr/colorSecondary" />
+        <SeekBar
+            android:id="@+id/percentSeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/seekbar_height"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:max="30"
+            android:progress="15"
+            android:progressTint="?attr/colorSecondary"
+            android:thumbTint="?attr/colorSecondary"
+            android:contentDescription="@string/percent_seekbar_label" />
+
 
     <!-- Fila 2: propina -->
     <TextView

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_amount">Ingrese el monto</string>
+    <string name="tip">Propina</string>
+    <string name="total">Total</string>
+    <string name="amount_field_label">Monto de la cuenta en centavos</string>
+    <string name="percent_seekbar_label">Porcentaje de propina</string>
+</resources>

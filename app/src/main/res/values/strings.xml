@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tip Calculator</string>
+    <string name="app_name" translatable="false">Tip Calculator</string>
     <string name="enter_amount">Enter Amount</string>
     <string name="tip_percentage">15%</string>
     <string name="tip">Tip</string>
     <string name="total">Total</string>
+    <string name="amount_field_label">Bill amount in cents</string>
+    <string name="percent_seekbar_label">Tip percentage</string>
 </resources>
