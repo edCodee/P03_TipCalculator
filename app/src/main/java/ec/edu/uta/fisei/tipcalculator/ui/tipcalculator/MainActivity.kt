@@ -1,12 +1,13 @@
 package ec.edu.uta.fisei.tipcalculator.ui.tipcalculator
 
+import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import ec.edu.uta.fisei.tipcalculator.R
 import ec.edu.uta.fisei.tipcalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,31 +16,38 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        // dark() = iconos claros, porque detras va el azul 700
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT)
+        )
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Deja la toolbar lista para el menu de la Practica 4
+        setSupportActionBar(binding.topAppBar)
 
         aplicarInsets()
     }
 
     /**
-     * Suma los insets del sistema (barras) y del teclado al padding base del
-     * XML, en vez de reemplazarlo. El teclado se incluye porque esta app lo
-     * mantiene visible de forma permanente (Fase 6).
+     * El inset superior va a la TOOLBAR, no a la raiz: asi su fondo azul se
+     * extiende por detras de la barra de estado transparente, que es como se
+     * reproduce hoy el colorPrimaryDark del PDF.
+     *
+     * Los laterales y el inferior (incluido el teclado) van a la raiz.
      */
     private fun aplicarInsets() {
-        val paddingBase = resources.getDimensionPixelSize(R.dimen.screen_padding)
-
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { root, insets ->
             val barras = insets.getInsets(
                 WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
             )
-            view.updatePadding(
-                left = paddingBase + barras.left,
-                top = paddingBase + barras.top,
-                right = paddingBase + barras.right,
-                bottom = paddingBase + barras.bottom
+            binding.topAppBar.updatePadding(top = barras.top)
+            root.updatePadding(
+                left = barras.left,
+                right = barras.right,
+                bottom = barras.bottom
             )
             insets
         }

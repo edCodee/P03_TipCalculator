@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tipCalculatorGridLayout"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="2"
-    android:padding="@dimen/screen_padding"
-    android:useDefaultMargins="true"
+    android:orientation="vertical"
     tools:context=".ui.tipcalculator.MainActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:title="@string/app_name"
+        app:titleTextColor="?attr/colorOnPrimary" />
+
+    <GridLayout
+        android:id="@+id/tipCalculatorGridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:padding="@dimen/screen_padding"
+        android:useDefaultMargins="true">
 
     <!-- Fila 0: el EditText va PRIMERO para quedar detras del TextView -->
     <EditText
@@ -61,7 +77,9 @@
         android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
         android:max="30"
-        android:progress="15" />
+        android:progress="15"
+        android:progressTint="?attr/colorSecondary"
+        android:thumbTint="?attr/colorSecondary" />
 
     <!-- Fila 2: propina -->
     <TextView
@@ -117,4 +135,6 @@
         android:textColor="@color/on_colored_background"
         tools:text="$70.40" />
 
-</GridLayout>
+    </GridLayout>
+
+</LinearLayout>

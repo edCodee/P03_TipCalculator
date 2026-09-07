@@ -1,9 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.TipCalculator" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Equivale al colorPrimary del PDF: tiñe el app bar -->
+        <item name="colorPrimary">@color/brand_blue</item>
+        <item name="colorOnPrimary">@color/on_brand_blue</item>
+
+        <!-- Equivale al colorAccent del PDF: tiñe el SeekBar -->
+        <item name="colorSecondary">@color/brand_orange</item>
+        <item name="colorOnSecondary">@color/on_brand_orange</item>
+
+        <item name="android:colorBackground">@color/surface_light</item>
+
+        <!-- API 35+: las barras son transparentes, el contenido va debajo -->
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@android:color/transparent</item>
     </style>
 
     <style name="Theme.TipCalculator" parent="Base.Theme.TipCalculator" />
+
 </resources>

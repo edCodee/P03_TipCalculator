@@ -6,4 +6,11 @@
     <color name="amount_background">#BBDEFB</color>
     <color name="result_background">#FFE0B2</color>
     <color name="on_colored_background">#1B1B1B</color>
+
+    <!-- Paleta del tema (PDF 3.5.2) -->
+    <color name="brand_blue">#1976D2</color>
+    <color name="on_brand_blue">#FFFFFF</color>
+    <color name="brand_orange">#FFAB40</color>
+    <color name="on_brand_orange">#3E2200</color>
+    <color name="surface_light">#FDFCFF</color>
 </resources>
