@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name" translatable="false">Tip Calculator</string>
     <string name="enter_amount">Enter Amount</string>
-    <string name="tip_percentage">15%</string>
+    <string name="tip_percentage" translatable="false">15%</string>
     <string name="tip">Tip</string>
     <string name="total">Total</string>
     <string name="amount_field_label">Bill amount in cents</string>
