@@ -14,10 +14,22 @@
         <activity
             android:name=".ui.tipcalculator.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+
+            <!--
+                Android 16 (API 36) ignora screenOrientation en pantallas >= 600dp.
+                Esta propiedad declara que la restriccion es intencional (PDF 3.7.3).
+                No garantiza el bloqueo: en pantallas grandes la app puede rotar igual.
+            -->
+            <property
+                android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY"
+                android:value="true" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
