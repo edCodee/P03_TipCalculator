@@ -1,0 +1,1865 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitattributes
+.gitignore
+app/.gitignore
+app/build.gradle.kts
+app/src/androidTest/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/MainActivityTest.kt
+app/src/main/AndroidManifest.xml
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/core/Money.kt
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/data/repository/.gitkeep
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/domain/model/TipCalculation.kt
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/domain/repository/.gitkeep
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/domain/usecase/CalculateTipUseCase.kt
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/domain/usecase/ParseBillAmountUseCase.kt
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/.gitkeep
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/MainActivity.kt
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/MoneyFormatter.kt
+app/src/main/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/TipCalculatorViewModel.kt
+app/src/main/keepRules/rules.keep
+app/src/main/res/drawable/ic_launcher_background.xml
+app/src/main/res/drawable/ic_launcher_foreground.xml
+app/src/main/res/layout/activity_main.xml
+app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+app/src/main/res/mipmap-hdpi/ic_launcher_round.webp
+app/src/main/res/mipmap-hdpi/ic_launcher.webp
+app/src/main/res/mipmap-mdpi/ic_launcher_round.webp
+app/src/main/res/mipmap-mdpi/ic_launcher.webp
+app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp
+app/src/main/res/mipmap-xhdpi/ic_launcher.webp
+app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp
+app/src/main/res/mipmap-xxhdpi/ic_launcher.webp
+app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp
+app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp
+app/src/main/res/values-es/strings.xml
+app/src/main/res/values-night/themes.xml
+app/src/main/res/values/colors.xml
+app/src/main/res/values/dimens.xml
+app/src/main/res/values/strings.xml
+app/src/main/res/values/themes.xml
+app/src/main/res/xml/backup_rules.xml
+app/src/main/res/xml/data_extraction_rules.xml
+app/src/test/java/ec/edu/uta/fisei/tipcalculator/domain/usecase/CalculateTipUseCaseTest.kt
+app/src/test/java/ec/edu/uta/fisei/tipcalculator/domain/usecase/ParseBillAmountUseCaseTest.kt
+app/src/test/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/MoneyFormatterTest.kt
+app/src/test/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/TipCalculatorViewModelTest.kt
+build.gradle.kts
+gradle.properties
+gradle/gradle-daemon-jvm.properties
+gradle/libs.versions.toml
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+settings.gradle.kts
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitattributes">
+* text=auto eol=lf
+*.bat text eol=crlf
+gradlew text eol=lf
+</file>
+
+<file path="app/.gitignore">
+/build
+</file>
+
+<file path="app/src/androidTest/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/MainActivityTest.kt">
+package ec.edu.uta.fisei.tipcalculator.ui.tipcalculator
+
+import androidx.test.core.app.ActivityScenario
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.clearText
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import ec.edu.uta.fisei.tipcalculator.R
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import java.math.BigDecimal
+import android.view.View
+import android.widget.SeekBar
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import org.hamcrest.Matcher
+
+@RunWith(AndroidJUnit4::class)
+class MainActivityTest {
+
+    private val formatter = MoneyFormatter()
+
+    private fun money(valor: String) = formatter.money(BigDecimal(valor))
+
+    @Before
+    fun abrirPantalla() {
+        ActivityScenario.launch(MainActivity::class.java)
+    }
+
+    @Test
+    fun alIniciar_muestraCerosYQuincePorCiento() {
+        onView(withId(R.id.tipTextView)).check(matches(withText(money("0.00"))))
+        onView(withId(R.id.totalTextView)).check(matches(withText(money("0.00"))))
+        onView(withId(R.id.percentTextView))
+            .check(matches(withText(formatter.percent(15))))
+    }
+
+    @Test
+    fun alTeclear5632_muestraMontoPropinaYTotalAlQuincePorCiento() {
+        onView(withId(R.id.amountEditText))
+            .perform(typeText("5632"), closeSoftKeyboard())
+
+        onView(withId(R.id.amountTextView)).check(matches(withText(money("56.32"))))
+        onView(withId(R.id.tipTextView)).check(matches(withText(money("8.45"))))
+        onView(withId(R.id.totalTextView)).check(matches(withText(money("64.77"))))
+    }
+
+    @Test
+    fun alBorrarTodo_vuelveACeros() {
+        onView(withId(R.id.amountEditText))
+            .perform(typeText("5632"), closeSoftKeyboard())
+        onView(withId(R.id.amountEditText))
+            .perform(clearText(), closeSoftKeyboard())
+
+        onView(withId(R.id.tipTextView)).check(matches(withText(money("0.00"))))
+        onView(withId(R.id.totalTextView)).check(matches(withText(money("0.00"))))
+    }
+    @Test
+    fun escenarioDelPdf_5632AlVeinticincoPorCiento() {
+        onView(withId(R.id.amountEditText))
+            .perform(typeText("5632"), closeSoftKeyboard())
+
+        onView(withId(R.id.percentSeekBar)).perform(setSeekBarProgress(25))
+
+        onView(withId(R.id.percentTextView))
+            .check(matches(withText(formatter.percent(25))))
+        onView(withId(R.id.tipTextView)).check(matches(withText(money("14.08"))))
+        onView(withId(R.id.totalTextView)).check(matches(withText(money("70.40"))))
+    }
+
+    /**
+     * Mueve el thumb de un SeekBar a un valor concreto.
+     *
+     * Se define aqui en vez de usar espresso-contrib porque SeekBarActions
+     * cambio de ubicacion entre versiones de Espresso.
+     */
+    private fun setSeekBarProgress(progreso: Int) = object : ViewAction {
+
+        override fun getConstraints(): Matcher<View> =
+            isAssignableFrom(SeekBar::class.java)
+
+        override fun getDescription() = "mover el SeekBar a $progreso"
+
+        override fun perform(uiController: UiController, view: View) {
+            (view as SeekBar).progress = progreso
+            uiController.loopMainThreadUntilIdle()
+        }
+    }
+}
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/core/Money.kt">
+package ec.edu.uta.fisei.tipcalculator.core
+
+import java.math.BigDecimal
+import java.math.RoundingMode
+
+/** Escala y modo de redondeo unicos para todos los montos de la app. */
+internal const val MONEY_SCALE = 2
+internal val MONEY_ROUNDING: RoundingMode = RoundingMode.HALF_UP
+internal val HUNDRED: BigDecimal = BigDecimal(100)
+
+/** Normaliza cualquier BigDecimal a la representacion monetaria de la app. */
+internal fun BigDecimal.toMoney(): BigDecimal = setScale(MONEY_SCALE, MONEY_ROUNDING)
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/data/repository/.gitkeep">
+
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/domain/model/TipCalculation.kt">
+package ec.edu.uta.fisei.tipcalculator.domain.model
+
+import java.math.BigDecimal
+
+/** Resultado inmutable de un calculo de propina. Sin dependencias de Android. */
+data class TipCalculation(
+    val billAmount: BigDecimal,
+    val tipPercent: Int,
+    val tip: BigDecimal,
+    val total: BigDecimal
+)
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/domain/repository/.gitkeep">
+
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/domain/usecase/CalculateTipUseCase.kt">
+package ec.edu.uta.fisei.tipcalculator.domain.usecase
+
+import ec.edu.uta.fisei.tipcalculator.core.HUNDRED
+import ec.edu.uta.fisei.tipcalculator.core.toMoney
+import ec.edu.uta.fisei.tipcalculator.domain.model.TipCalculation
+import java.math.BigDecimal
+
+/**
+ * Calcula propina y total a partir de un monto y un porcentaje entero.
+ *
+ * El total se deriva de la propina YA redondeada, de modo que los tres
+ * valores mostrados en pantalla siempre sumen exactamente.
+ */
+class CalculateTipUseCase {
+
+    operator fun invoke(billAmount: BigDecimal, tipPercent: Int): TipCalculation {
+        require(tipPercent in PORCENTAJE_MINIMO..PORCENTAJE_MAXIMO) {
+            "El porcentaje debe estar entre $PORCENTAJE_MINIMO y $PORCENTAJE_MAXIMO, fue $tipPercent"
+        }
+        require(billAmount.signum() >= 0) {
+            "El monto no puede ser negativo, fue $billAmount"
+        }
+
+        val monto = billAmount.toMoney()
+        val propina = (monto * tipPercent.toBigDecimal()).divide(HUNDRED).toMoney()
+        val total = (monto + propina).toMoney()
+
+        return TipCalculation(
+            billAmount = monto,
+            tipPercent = tipPercent,
+            tip = propina,
+            total = total
+        )
+    }
+
+    companion object {
+        const val PORCENTAJE_MINIMO = 0
+        const val PORCENTAJE_MAXIMO = 30
+    }
+}
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/domain/usecase/ParseBillAmountUseCase.kt">
+package ec.edu.uta.fisei.tipcalculator.domain.usecase
+
+import ec.edu.uta.fisei.tipcalculator.core.HUNDRED
+import ec.edu.uta.fisei.tipcalculator.core.toMoney
+import java.math.BigDecimal
+
+/**
+ * Convierte la cadena de digitos del EditText en un monto.
+ *
+ * El usuario teclea el monto como numero entero de centavos (PDF 3.2):
+ * "5632" representa 56.32. Cualquier entrada invalida o vacia da 0.00,
+ * que es el comportamiento del bloque catch del PDF (lineas 100-103).
+ */
+class ParseBillAmountUseCase {
+
+    operator fun invoke(digits: String): BigDecimal {
+        if (digits.isEmpty() || !digits.all { it.isDigit() }) {
+            return BigDecimal.ZERO.toMoney()
+        }
+        return BigDecimal(digits).divide(HUNDRED).toMoney()
+    }
+}
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/.gitkeep">
+
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/MoneyFormatter.kt">
+package ec.edu.uta.fisei.tipcalculator.ui.tipcalculator
+
+import ec.edu.uta.fisei.tipcalculator.core.HUNDRED
+import java.math.BigDecimal
+import java.text.NumberFormat
+import java.util.Locale
+
+/**
+ * Formatea montos y porcentajes segun el locale del dispositivo (PDF 3.3.6).
+ *
+ * El locale se recibe por parametro en vez de leerse dentro: asi los tests
+ * son deterministas y no dependen de la maquina que los ejecuta.
+ */
+class MoneyFormatter(locale: Locale = Locale.getDefault()) {
+
+    private val currencyFormat: NumberFormat = NumberFormat.getCurrencyInstance(locale)
+    private val percentFormat: NumberFormat = NumberFormat.getPercentInstance(locale)
+
+    fun money(amount: BigDecimal): String = currencyFormat.format(amount)
+
+    fun percent(tipPercent: Int): String =
+        percentFormat.format(tipPercent.toBigDecimal().divide(HUNDRED))
+}
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/TipCalculatorViewModel.kt">
+package ec.edu.uta.fisei.tipcalculator.ui.tipcalculator
+
+import androidx.lifecycle.ViewModel
+import ec.edu.uta.fisei.tipcalculator.domain.model.TipCalculation
+import ec.edu.uta.fisei.tipcalculator.domain.usecase.CalculateTipUseCase
+import ec.edu.uta.fisei.tipcalculator.domain.usecase.ParseBillAmountUseCase
+import java.math.BigDecimal
+
+/**
+ * Guarda el estado de la pantalla y orquesta los casos de uso.
+ *
+ * Sobrevive a la recreacion de la Activity (rotacion, cambio de tema o de
+ * idioma), a diferencia de los campos de instancia que usa el PDF.
+ */
+class TipCalculatorViewModel(
+    private val parseBillAmount: ParseBillAmountUseCase = ParseBillAmountUseCase(),
+    private val calculateTip: CalculateTipUseCase = CalculateTipUseCase()
+) : ViewModel() {
+
+    private var billAmount: BigDecimal = BigDecimal.ZERO
+    private var tipPercent: Int = PORCENTAJE_INICIAL
+
+    var state: TipCalculation = calculateTip(billAmount, tipPercent)
+        private set
+
+    fun onAmountChanged(digits: String) {
+        billAmount = parseBillAmount(digits)
+        recalcular()
+    }
+
+    fun onPercentChanged(percent: Int) {
+        tipPercent = percent.coerceIn(
+            CalculateTipUseCase.PORCENTAJE_MINIMO,
+            CalculateTipUseCase.PORCENTAJE_MAXIMO
+        )
+        recalcular()
+    }
+
+    private fun recalcular() {
+        state = calculateTip(billAmount, tipPercent)
+    }
+
+    companion object {
+        const val PORCENTAJE_INICIAL = 15
+    }
+}
+</file>
+
+<file path="app/src/main/keepRules/rules.keep">
+# Add project specific R8 rules here.
+# AGP will combine all keep rule files in src/main/keepRules to pass to R8
+#
+# For more details, see
+#   https://d.android.com/r/tools/r8/keep-rules
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+</file>
+
+<file path="app/src/main/res/drawable/ic_launcher_background.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#3DDC84"
+        android:pathData="M0,0h108v108h-108z" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M9,0L9,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,0L19,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M29,0L29,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M39,0L39,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M49,0L49,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M59,0L59,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M69,0L69,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M79,0L79,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M89,0L89,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M99,0L99,108"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,9L108,9"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,19L108,19"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,29L108,29"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,39L108,39"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,49L108,49"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,59L108,59"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,69L108,69"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,79L108,79"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,89L108,89"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,99L108,99"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,29L89,29"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,39L89,39"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,49L89,49"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,59L89,59"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,69L89,69"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,79L89,79"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M29,19L29,89"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M39,19L39,89"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M49,19L49,89"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M59,19L59,89"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M69,19L69,89"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M79,19L79,89"
+        android:strokeWidth="0.8"
+        android:strokeColor="#33FFFFFF" />
+</vector>
+</file>
+
+<file path="app/src/main/res/drawable/ic_launcher_foreground.xml">
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:pathData="M31,63.928c0,0 6.4,-11 12.1,-13.1c7.2,-2.6 26,-1.4 26,-1.4l38.1,38.1L107,108.928l-32,-1L31,63.928z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="85.84757"
+                android:endY="92.4963"
+                android:startX="42.9492"
+                android:startY="49.59793"
+                android:type="linear">
+                <item
+                    android:color="#44000000"
+                    android:offset="0.0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillType="nonZero"
+        android:pathData="M65.3,45.828l3.8,-6.6c0.2,-0.4 0.1,-0.9 -0.3,-1.1c-0.4,-0.2 -0.9,-0.1 -1.1,0.3l-3.9,6.7c-6.3,-2.8 -13.4,-2.8 -19.7,0l-3.9,-6.7c-0.2,-0.4 -0.7,-0.5 -1.1,-0.3C38.8,38.328 38.7,38.828 38.9,39.228l3.8,6.6C36.2,49.428 31.7,56.028 31,63.928h46C76.3,56.028 71.8,49.428 65.3,45.828zM43.4,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2c-0.3,-0.7 -0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C45.3,56.528 44.5,57.328 43.4,57.328L43.4,57.328zM64.6,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2s-0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C66.5,56.528 65.6,57.328 64.6,57.328L64.6,57.328z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000" />
+</vector>
+</file>
+
+<file path="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+    <monochrome android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>
+</file>
+
+<file path="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+    <monochrome android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>
+</file>
+
+<file path="app/src/main/res/values-es/strings.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_amount">Ingrese el monto</string>
+    <string name="tip">Propina</string>
+    <string name="total">Total</string>
+    <string name="amount_field_label">Monto de la cuenta en centavos</string>
+    <string name="percent_seekbar_label">Porcentaje de propina</string>
+</resources>
+</file>
+
+<file path="app/src/main/res/values/dimens.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="textview_padding">12dp</dimen>
+    <dimen name="view_elevation">4dp</dimen>
+    <dimen name="seekbar_height">40dp</dimen>
+</resources>
+</file>
+
+<file path="app/src/main/res/xml/backup_rules.xml">
+<?xml version="1.0" encoding="utf-8"?><!--
+   Sample backup rules file; uncomment and customize as necessary.
+   See https://developer.android.com/guide/topics/data/autobackup
+   for details.
+   Note: This file is ignored for devices older than API 31
+   See https://developer.android.com/about/versions/12/backup-restore
+-->
+<full-backup-content>
+    <!--
+   <include domain="sharedpref" path="."/>
+   <exclude domain="sharedpref" path="device.xml"/>
+-->
+</full-backup-content>
+</file>
+
+<file path="app/src/main/res/xml/data_extraction_rules.xml">
+<?xml version="1.0" encoding="utf-8"?><!--
+   Sample data extraction rules file; uncomment and customize as necessary.
+   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
+   for details.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- TODO: Use <include> and <exclude> to control what is backed up.
+        <include .../>
+        <exclude .../>
+        -->
+    </cloud-backup>
+    <!--
+    <device-transfer>
+        <include .../>
+        <exclude .../>
+    </device-transfer>
+    -->
+</data-extraction-rules>
+</file>
+
+<file path="app/src/test/java/ec/edu/uta/fisei/tipcalculator/domain/usecase/CalculateTipUseCaseTest.kt">
+package ec.edu.uta.fisei.tipcalculator.domain.usecase
+
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import java.math.BigDecimal
+
+class CalculateTipUseCaseTest {
+
+    private val calcular = CalculateTipUseCase()
+
+    // --- Escenario exacto del PDF, Fig. 3.1(b) ---
+
+    @Test
+    fun `56_32 al 25 por ciento da propina 14_08 y total 70_40`() {
+        val r = calcular(BigDecimal("56.32"), 25)
+
+        assertEquals(BigDecimal("14.08"), r.tip)
+        assertEquals(BigDecimal("70.40"), r.total)
+    }
+
+    @Test
+    fun `56_32 al 15 por ciento por defecto da propina 8_45 y total 64_77`() {
+        val r = calcular(BigDecimal("56.32"), 15)
+
+        assertEquals(BigDecimal("8.45"), r.tip)
+        assertEquals(BigDecimal("64.77"), r.total)
+    }
+
+    // --- Límites del rango que permite el SeekBar (0 a 30) ---
+
+    @Test
+    fun `al 0 por ciento la propina es cero y el total es el monto`() {
+        val r = calcular(BigDecimal("56.32"), 0)
+
+        assertEquals(BigDecimal("0.00"), r.tip)
+        assertEquals(BigDecimal("56.32"), r.total)
+    }
+
+    @Test
+    fun `al 30 por ciento maximo da propina 16_90 y total 73_22`() {
+        val r = calcular(BigDecimal("56.32"), 30)
+
+        assertEquals(BigDecimal("16.90"), r.tip)
+        assertEquals(BigDecimal("73.22"), r.total)
+    }
+
+    @Test
+    fun `monto cero da propina y total en cero`() {
+        val r = calcular(BigDecimal("0.00"), 15)
+
+        assertEquals(BigDecimal("0.00"), r.tip)
+        assertEquals(BigDecimal("0.00"), r.total)
+    }
+
+    // --- Redondeo ---
+
+    @Test
+    fun `redondea hacia arriba cuando el tercer decimal es 5`() {
+        // 3.70 x 15% = 0.555 exacto -> HALF_UP -> 0.56
+        val r = calcular(BigDecimal("3.70"), 15)
+
+        assertEquals(BigDecimal("0.56"), r.tip)
+        assertEquals(BigDecimal("4.26"), r.total)
+    }
+
+    @Test
+    fun `el resultado siempre tiene exactamente dos decimales`() {
+        val r = calcular(BigDecimal("10"), 15)
+
+        assertEquals(2, r.tip.scale())
+        assertEquals(2, r.total.scale())
+    }
+
+    @Test
+    fun `el total siempre es igual al monto mas la propina`() {
+        for (porcentaje in 0..30) {
+            val r = calcular(BigDecimal("56.32"), porcentaje)
+            assertEquals(
+                "Fallo la invariante con $porcentaje%",
+                r.total,
+                BigDecimal("56.32") + r.tip
+            )
+        }
+    }
+
+    // --- Entradas invalidas ---
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `rechaza porcentajes negativos`() {
+        calcular(BigDecimal("56.32"), -1)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `rechaza porcentajes mayores a 30`() {
+        calcular(BigDecimal("56.32"), 31)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `rechaza montos negativos`() {
+        calcular(BigDecimal("-1.00"), 15)
+    }
+}
+</file>
+
+<file path="app/src/test/java/ec/edu/uta/fisei/tipcalculator/domain/usecase/ParseBillAmountUseCaseTest.kt">
+package ec.edu.uta.fisei.tipcalculator.domain.usecase
+
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import java.math.BigDecimal
+
+class ParseBillAmountUseCaseTest {
+
+    private val parsear = ParseBillAmountUseCase()
+
+    // La secuencia exacta que describe el PDF en la seccion 3.2:
+    // al teclear 5, 6, 3, 2 el monto pasa por 0.05, 0.56, 5.63 y 56.32
+
+    @Test
+    fun `un digito se interpreta como centavos`() {
+        assertEquals(BigDecimal("0.05"), parsear("5"))
+    }
+
+    @Test
+    fun `dos digitos`() {
+        assertEquals(BigDecimal("0.56"), parsear("56"))
+    }
+
+    @Test
+    fun `tres digitos`() {
+        assertEquals(BigDecimal("5.63"), parsear("563"))
+    }
+
+    @Test
+    fun `cuatro digitos`() {
+        assertEquals(BigDecimal("56.32"), parsear("5632"))
+    }
+
+    @Test
+    fun `seis digitos es el monto maximo que permite la UI`() {
+        assertEquals(BigDecimal("9999.99"), parsear("999999"))
+    }
+
+    @Test
+    fun `entrada vacia devuelve cero`() {
+        assertEquals(BigDecimal("0.00"), parsear(""))
+    }
+
+    @Test
+    fun `entrada no numerica devuelve cero`() {
+        assertEquals(BigDecimal("0.00"), parsear("abc"))
+    }
+
+    @Test
+    fun `ceros a la izquierda no alteran el valor`() {
+        assertEquals(BigDecimal("0.05"), parsear("0005"))
+    }
+}
+</file>
+
+<file path="app/src/test/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/MoneyFormatterTest.kt">
+package ec.edu.uta.fisei.tipcalculator.ui.tipcalculator
+
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
+import org.junit.Test
+import java.math.BigDecimal
+import java.util.Locale
+
+class MoneyFormatterTest {
+
+    private val us = MoneyFormatter(Locale.US)
+
+    @Test
+    fun `formatea moneda en locale US`() {
+        assertEquals("$56.32", us.money(BigDecimal("56.32")))
+    }
+
+    @Test
+    fun `formatea cero en locale US`() {
+        assertEquals("$0.00", us.money(BigDecimal("0.00")))
+    }
+
+    @Test
+    fun `formatea porcentaje entero en locale US`() {
+        assertEquals("15%", us.percent(15))
+    }
+
+    @Test
+    fun `formatea los extremos del rango`() {
+        assertEquals("0%", us.percent(0))
+        assertEquals("30%", us.percent(30))
+    }
+
+    @Test
+    fun `distintos locales producen formatos distintos`() {
+        val alemania = MoneyFormatter(Locale.GERMANY)
+        assertNotEquals(us.money(BigDecimal("56.32")), alemania.money(BigDecimal("56.32")))
+    }
+}
+</file>
+
+<file path="app/src/test/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/TipCalculatorViewModelTest.kt">
+package ec.edu.uta.fisei.tipcalculator.ui.tipcalculator
+
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import java.math.BigDecimal
+
+class TipCalculatorViewModelTest {
+
+    private val viewModel = TipCalculatorViewModel()
+
+    @Test
+    fun `el estado inicial es cero al 15 por ciento`() {
+        val s = viewModel.state
+
+        assertEquals(BigDecimal("0.00"), s.billAmount)
+        assertEquals(15, s.tipPercent)
+        assertEquals(BigDecimal("0.00"), s.tip)
+        assertEquals(BigDecimal("0.00"), s.total)
+    }
+
+    @Test
+    fun `tecleando 5632 calcula con el 15 por ciento inicial`() {
+        viewModel.onAmountChanged("5632")
+
+        assertEquals(BigDecimal("56.32"), viewModel.state.billAmount)
+        assertEquals(BigDecimal("8.45"), viewModel.state.tip)
+        assertEquals(BigDecimal("64.77"), viewModel.state.total)
+    }
+
+    @Test
+    fun `el escenario completo del PDF - 5632 y luego 25 por ciento`() {
+        viewModel.onAmountChanged("5632")
+        viewModel.onPercentChanged(25)
+
+        assertEquals(BigDecimal("14.08"), viewModel.state.tip)
+        assertEquals(BigDecimal("70.40"), viewModel.state.total)
+    }
+
+    @Test
+    fun `el porcentaje se conserva al cambiar el monto`() {
+        viewModel.onPercentChanged(30)
+        viewModel.onAmountChanged("1000")
+
+        assertEquals(30, viewModel.state.tipPercent)
+        assertEquals(BigDecimal("3.00"), viewModel.state.tip)
+    }
+
+    @Test
+    fun `borrar todos los digitos vuelve a cero sin perder el porcentaje`() {
+        viewModel.onAmountChanged("5632")
+        viewModel.onPercentChanged(25)
+        viewModel.onAmountChanged("")
+
+        assertEquals(BigDecimal("0.00"), viewModel.state.total)
+        assertEquals(25, viewModel.state.tipPercent)
+    }
+
+    @Test
+    fun `un porcentaje fuera de rango se acota en vez de reventar`() {
+        viewModel.onPercentChanged(99)
+        assertEquals(30, viewModel.state.tipPercent)
+
+        viewModel.onPercentChanged(-5)
+        assertEquals(0, viewModel.state.tipPercent)
+    }
+}
+</file>
+
+<file path="build.gradle.kts">
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    alias(libs.plugins.android.application) apply false
+}
+</file>
+
+<file path="gradle.properties">
+# Project-wide Gradle settings.
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. For more details, visit
+# https://developer.android.com/r/tools/gradle-multi-project-decoupled-projects
+# org.gradle.parallel=true
+# When enabled, the Configuration Cache allows Gradle to skip the configuration
+# phase entirely if nothing that affects the build configuration (such as build scripts)
+# has changed. Additionally, Gradle applies performance optimizations to task execution.
+org.gradle.configuration-cache=true
+# Kotlin code style for this project: "official" or "obsolete":
+kotlin.code.style=official
+</file>
+
+<file path="gradle/gradle-daemon-jvm.properties">
+#This file is generated by updateDaemonJvm
+toolchainUrl.FREE_BSD.AARCH64=https\://api.foojay.io/disco/v3.0/ids/cf726b4a1c84b50457225f9bba6d7650/redirect
+toolchainUrl.FREE_BSD.X86_64=https\://api.foojay.io/disco/v3.0/ids/fa1e318c287360478e3c83a9a3ef1007/redirect
+toolchainUrl.LINUX.AARCH64=https\://api.foojay.io/disco/v3.0/ids/cf726b4a1c84b50457225f9bba6d7650/redirect
+toolchainUrl.LINUX.X86_64=https\://api.foojay.io/disco/v3.0/ids/fa1e318c287360478e3c83a9a3ef1007/redirect
+toolchainUrl.MAC_OS.AARCH64=https\://api.foojay.io/disco/v3.0/ids/c2dd35c9d0aaf0ba6ad0791320f99dfc/redirect
+toolchainUrl.MAC_OS.X86_64=https\://api.foojay.io/disco/v3.0/ids/e5810bd7fd1f8a586644409d395a7e55/redirect
+toolchainUrl.UNIX.AARCH64=https\://api.foojay.io/disco/v3.0/ids/cf726b4a1c84b50457225f9bba6d7650/redirect
+toolchainUrl.UNIX.X86_64=https\://api.foojay.io/disco/v3.0/ids/fa1e318c287360478e3c83a9a3ef1007/redirect
+toolchainUrl.WINDOWS.AARCH64=https\://api.foojay.io/disco/v3.0/ids/7b3c4877c0749019e6805bb61e421497/redirect
+toolchainUrl.WINDOWS.X86_64=https\://api.foojay.io/disco/v3.0/ids/d76df094a9cbbabd3b08251f9e61444a/redirect
+toolchainVersion=25
+</file>
+
+<file path="gradle/wrapper/gradle-wrapper.properties">
+#Mon Sep 07 07:22:04 GMT-05:00 2026
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionSha256Sum=553c78f50dafcd54d65b9a444649057857469edf836431389695608536d6b746
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.5.0-bin.zip
+networkTimeout=10000
+validateDistributionUrl=true
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+</file>
+
+<file path="gradlew">
+#!/bin/sh
+
+#
+# Copyright © 2015 the original authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+##############################################################################
+#
+#   Gradle start up script for POSIX generated by Gradle.
+#
+#   Important for running:
+#
+#   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is
+#       noncompliant, but you have some other compliant shell such as ksh or
+#       bash, then to run this script, type that shell name before the whole
+#       command line, like:
+#
+#           ksh Gradle
+#
+#       Busybox and similar reduced shells will NOT work, because this script
+#       requires all of these POSIX shell features:
+#         * functions;
+#         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
+#           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
+#         * compound commands having a testable exit status, especially «case»;
+#         * various built-in commands including «command», «set», and «ulimit».
+#
+#   Important for patching:
+#
+#   (2) This script targets any POSIX shell, so it avoids extensions provided
+#       by Bash, Ksh, etc; in particular arrays are avoided.
+#
+#       The "traditional" practice of packing multiple parameters into a
+#       space-separated string is a well documented source of bugs and security
+#       problems, so this is (mostly) avoided, by progressively accumulating
+#       options in "$@", and eventually passing that to Java.
+#
+#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
+#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
+#       see the in-line comments for details.
+#
+#       There are tweaks for specific operating systems such as AIX, CygWin,
+#       Darwin, MinGW, and NonStop.
+#
+#   (3) This script is generated from the Groovy template
+#       https://github.com/gradle/gradle/blob/HEAD/platforms/jvm/plugins-application/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
+#       within the Gradle project.
+#
+#       You can find Gradle at https://github.com/gradle/gradle/.
+#
+##############################################################################
+
+# Attempt to set APP_HOME
+
+# Resolve links: $0 may be a link
+app_path=$0
+
+# Need this for daisy-chained symlinks.
+while
+    APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
+    [ -h "$app_path" ]
+do
+    ls=$( ls -ld "$app_path" )
+    link=${ls#*' -> '}
+    case $link in             #(
+      /*)   app_path=$link ;; #(
+      *)    app_path=$APP_HOME$link ;;
+    esac
+done
+
+# This is normally unused
+# shellcheck disable=SC2034
+APP_BASE_NAME=${0##*/}
+# Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)
+APP_HOME=$( cd -P "${APP_HOME:-./}" > /dev/null && printf '%s\n' "$PWD" ) || exit
+
+# Use the maximum available, or set MAX_FD != -1 to use that value.
+MAX_FD=maximum
+
+warn () {
+    echo "$*"
+} >&2
+
+die () {
+    echo
+    echo "$*"
+    echo
+    exit 1
+} >&2
+
+# OS specific support (must be 'true' or 'false').
+cygwin=false
+msys=false
+darwin=false
+nonstop=false
+case "$( uname )" in                #(
+  CYGWIN* )         cygwin=true  ;; #(
+  Darwin* )         darwin=true  ;; #(
+  MSYS* | MINGW* )  msys=true    ;; #(
+  NONSTOP* )        nonstop=true ;;
+esac
+
+CLASSPATH="\\\"\\\""
+
+
+# Determine the Java command to use to start the JVM.
+if [ -n "$JAVA_HOME" ] ; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+        # IBM's JDK on AIX uses strange locations for the executables
+        JAVACMD=$JAVA_HOME/jre/sh/java
+    else
+        JAVACMD=$JAVA_HOME/bin/java
+    fi
+    if [ ! -x "$JAVACMD" ] ; then
+        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+else
+    JAVACMD=java
+    if ! command -v java >/dev/null 2>&1
+    then
+        die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+fi
+
+# Increase the maximum file descriptors if we can.
+if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
+    case $MAX_FD in #(
+      max*)
+        # In POSIX sh, ulimit -H is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        MAX_FD=$( ulimit -H -n ) ||
+            warn "Could not query maximum file descriptor limit"
+    esac
+    case $MAX_FD in  #(
+      '' | soft) :;; #(
+      *)
+        # In POSIX sh, ulimit -n is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        ulimit -n "$MAX_FD" ||
+            warn "Could not set maximum file descriptor limit to $MAX_FD"
+    esac
+fi
+
+# Collect all arguments for the java command, stacking in reverse order:
+#   * args from the command line
+#   * the main class name
+#   * -classpath
+#   * -D...appname settings
+#   * --module-path (only if needed)
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
+
+# For Cygwin or MSYS, switch paths to Windows format before running java
+if "$cygwin" || "$msys" ; then
+    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
+    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
+
+    JAVACMD=$( cygpath --unix "$JAVACMD" )
+
+    # Now convert the arguments - kludge to limit ourselves to /bin/sh
+    for arg do
+        if
+            case $arg in                                #(
+              -*)   false ;;                            # don't mess with options #(
+              /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
+                    [ -e "$t" ] ;;                      #(
+              *)    false ;;
+            esac
+        then
+            arg=$( cygpath --path --ignore --mixed "$arg" )
+        fi
+        # Roll the args list around exactly as many times as the number of
+        # args, so each arg winds up back in the position where it started, but
+        # possibly modified.
+        #
+        # NB: a `for` loop captures its iteration list before it begins, so
+        # changing the positional parameters here affects neither the number of
+        # iterations, nor the values presented in `arg`.
+        shift                   # remove old arg
+        set -- "$@" "$arg"      # push replacement arg
+    done
+fi
+
+
+# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+
+# Collect all arguments for the java command:
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,
+#     and any embedded shellness will be escaped.
+#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be
+#     treated as '${Hostname}' itself on the command line.
+
+set -- \
+        "-Dorg.gradle.appname=$APP_BASE_NAME" \
+        -classpath "$CLASSPATH" \
+        -jar "$APP_HOME/gradle/wrapper/gradle-wrapper.jar" \
+        "$@"
+
+# Stop when "xargs" is not available.
+if ! command -v xargs >/dev/null 2>&1
+then
+    die "xargs is not available"
+fi
+
+# Use "xargs" to parse quoted args.
+#
+# With -n1 it outputs one arg per line, with the quotes and backslashes removed.
+#
+# In Bash we could simply go:
+#
+#   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
+#   set -- "${ARGS[@]}" "$@"
+#
+# but POSIX shell has neither arrays nor command substitution, so instead we
+# post-process each arg (as a line of input to sed) to backslash-escape any
+# character that might be a shell metacharacter, then use eval to reverse
+# that process (while maintaining the separation between arguments), and wrap
+# the whole thing up as a single "set" statement.
+#
+# This will of course break if any of these variables contains a newline or
+# an unmatched quote.
+#
+
+eval "set -- $(
+        printf '%s\n' "$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS" |
+        xargs -n1 |
+        sed ' s~[^-[:alnum:]+,./:=@_]~\\&~g; ' |
+        tr '\n' ' '
+    )" '"$@"'
+
+exec "$JAVACMD" "$@"
+</file>
+
+<file path="gradlew.bat">
+@rem
+@rem Copyright 2015 the original author or authors.
+@rem
+@rem Licensed under the Apache License, Version 2.0 (the "License");
+@rem you may not use this file except in compliance with the License.
+@rem You may obtain a copy of the License at
+@rem
+@rem      https://www.apache.org/licenses/LICENSE-2.0
+@rem
+@rem Unless required by applicable law or agreed to in writing, software
+@rem distributed under the License is distributed on an "AS IS" BASIS,
+@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@rem See the License for the specific language governing permissions and
+@rem limitations under the License.
+@rem
+@rem SPDX-License-Identifier: Apache-2.0
+@rem
+
+@if "%DEBUG%"=="" @echo off
+@rem ##########################################################################
+@rem
+@rem  Gradle startup script for Windows
+@rem
+@rem ##########################################################################
+
+@rem Set local scope for the variables with windows NT shell
+if "%OS%"=="Windows_NT" setlocal
+
+set DIRNAME=%~dp0
+if "%DIRNAME%"=="" set DIRNAME=.
+@rem This is normally unused
+set APP_BASE_NAME=%~n0
+set APP_HOME=%DIRNAME%
+
+@rem Resolve any "." and ".." in APP_HOME to make it shorter.
+for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
+
+@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
+
+@rem Find java.exe
+if defined JAVA_HOME goto findJavaFromJavaHome
+
+set JAVA_EXE=java.exe
+%JAVA_EXE% -version >NUL 2>&1
+if %ERRORLEVEL% equ 0 goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:findJavaFromJavaHome
+set JAVA_HOME=%JAVA_HOME:"=%
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+
+if exist "%JAVA_EXE%" goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:execute
+@rem Setup the command line
+
+set CLASSPATH=
+
+
+@rem Execute Gradle
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" -jar "%APP_HOME%\gradle\wrapper\gradle-wrapper.jar" %*
+
+:end
+@rem End local scope for the variables with windows NT shell
+if %ERRORLEVEL% equ 0 goto mainEnd
+
+:fail
+rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
+rem the _cmd.exe /c_ return code!
+set EXIT_CODE=%ERRORLEVEL%
+if %EXIT_CODE% equ 0 set EXIT_CODE=1
+if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
+exit /b %EXIT_CODE%
+
+:mainEnd
+if "%OS%"=="Windows_NT" endlocal
+
+:omega
+</file>
+
+<file path="settings.gradle.kts">
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "TipCalculator"
+include(":app")
+</file>
+
+<file path="app/src/main/AndroidManifest.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TipCalculator">
+        <activity
+            android:name=".ui.tipcalculator.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+
+            <!--
+                Android 16 (API 36) ignora screenOrientation en pantallas >= 600dp.
+                Esta propiedad declara que la restriccion es intencional (PDF 3.7.3).
+                No garantiza el bloqueo: en pantallas grandes la app puede rotar igual.
+            -->
+<!--            <property-->
+<!--                android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY"-->
+<!--                android:value="true" />-->
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+</file>
+
+<file path="app/src/main/res/values-night/themes.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.TipCalculator" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brand_blue</item>
+        <item name="colorOnPrimary">@color/on_brand_blue</item>
+        <item name="colorSecondary">@color/brand_orange</item>
+        <item name="colorOnSecondary">@color/on_brand_orange</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@android:color/transparent</item>
+    </style>
+
+</resources>
+</file>
+
+<file path="app/src/main/res/values/themes.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.TipCalculator" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Equivale al colorPrimary del PDF: tiñe el app bar -->
+        <item name="colorPrimary">@color/brand_blue</item>
+        <item name="colorOnPrimary">@color/on_brand_blue</item>
+
+        <!-- Equivale al colorAccent del PDF: tiñe el SeekBar -->
+        <item name="colorSecondary">@color/brand_orange</item>
+        <item name="colorOnSecondary">@color/on_brand_orange</item>
+
+        <item name="android:colorBackground">@color/surface_light</item>
+
+        <!-- API 35+: las barras son transparentes, el contenido va debajo -->
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.TipCalculator" parent="Base.Theme.TipCalculator" />
+
+</resources>
+</file>
+
+<file path="gradle/libs.versions.toml">
+[versions]
+agp = "9.3.2"
+coreKtx = "1.19.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+appcompat = "1.8.0"
+material = "1.14.0"
+activityKtx = "1.13.0"
+constraintlayout = "2.2.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version = "1.7.0" }
+androidx-test-rules = { group = "androidx.test", name = "rules", version = "1.7.0" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+</file>
+
+<file path=".gitignore">
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/.idea/deploymentTargetSelector.xml
+/.idea/deviceManager.xml
+</file>
+
+<file path="app/build.gradle.kts">
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace = "ec.edu.uta.fisei.tipcalculator"
+    compileSdk {
+        version = release(37)
+    }
+
+    defaultConfig {
+        applicationId = "ec.edu.uta.fisei.tipcalculator"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            optimization {
+                enable = false
+            }
+        }
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true
+        }
+    }
+}
+
+dependencies {
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
+}
+</file>
+
+<file path="app/src/main/res/values/colors.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="amount_background">#BBDEFB</color>
+    <color name="result_background">#FFE0B2</color>
+    <color name="on_colored_background">#1B1B1B</color>
+
+    <!-- Paleta del tema (PDF 3.5.2) -->
+    <color name="brand_blue">#1976D2</color>
+    <color name="on_brand_blue">#FFFFFF</color>
+    <color name="brand_orange">#FFAB40</color>
+    <color name="on_brand_orange">#3E2200</color>
+    <color name="surface_light">#FDFCFF</color>
+</resources>
+</file>
+
+<file path="app/src/main/java/ec/edu/uta/fisei/tipcalculator/ui/tipcalculator/MainActivity.kt">
+package ec.edu.uta.fisei.tipcalculator.ui.tipcalculator
+
+import android.graphics.Color
+import android.os.Bundle
+import android.widget.SeekBar
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+import androidx.core.widget.doOnTextChanged
+import ec.edu.uta.fisei.tipcalculator.databinding.ActivityMainBinding
+import ec.edu.uta.fisei.tipcalculator.domain.usecase.CalculateTipUseCase
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private val viewModel: TipCalculatorViewModel by viewModels()
+    private val formatter = MoneyFormatter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT))
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.topAppBar)
+
+        aplicarInsets()
+        configurarSeekBar()
+        configurarEditText()
+        render()
+    }
+
+    /**
+     * El rango del SeekBar sale del dominio, no de un numero suelto en el XML.
+     * Asi es imposible que el widget y la regla de negocio se desincronicen.
+     */
+    private fun configurarSeekBar() {
+        binding.percentSeekBar.max = CalculateTipUseCase.PORCENTAJE_MAXIMO
+        binding.percentSeekBar.progress = viewModel.state.tipPercent
+
+        binding.percentSeekBar.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                    viewModel.onPercentChanged(progress)
+                    render()
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar) = Unit
+                override fun onStopTrackingTouch(seekBar: SeekBar) = Unit
+            }
+        )
+    }
+
+    private fun configurarEditText() {
+        binding.amountEditText.doOnTextChanged { text, _, _, _ ->
+            viewModel.onAmountChanged(text?.toString().orEmpty())
+            render()
+        }
+    }
+
+    /** Vuelca el estado del ViewModel en las vistas. Sin calculos aqui. */
+    private fun render() {
+        val estado = viewModel.state
+
+        // Vacio hace que reaparezca el hint "Enter Amount" (PDF 3.2)
+        binding.amountTextView.text =
+            if (estado.billAmount.signum() == 0) "" else formatter.money(estado.billAmount)
+
+        binding.percentTextView.text = formatter.percent(estado.tipPercent)
+        binding.tipTextView.text = formatter.money(estado.tip)
+        binding.totalTextView.text = formatter.money(estado.total)
+    }
+
+    private fun aplicarInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { root, insets ->
+            val barras = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+            )
+            binding.topAppBar.updatePadding(top = barras.top)
+            root.updatePadding(
+                left = barras.left,
+                right = barras.right,
+                bottom = barras.bottom
+            )
+            insets
+        }
+    }
+}
+</file>
+
+<file path="app/src/main/res/values/strings.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Tip Calculator</string>
+    <string name="enter_amount">Enter Amount</string>
+    <string name="tip_percentage" translatable="false">15%</string>
+    <string name="tip">Tip</string>
+    <string name="total">Total</string>
+    <string name="amount_field_label">Bill amount in cents</string>
+    <string name="percent_seekbar_label">Tip percentage</string>
+</resources>
+</file>
+
+<file path="app/src/main/res/layout/activity_main.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.tipcalculator.MainActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:title="@string/app_name"
+        app:titleTextColor="?attr/colorOnPrimary" />
+
+    <GridLayout
+        android:id="@+id/tipCalculatorGridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:padding="@dimen/screen_padding"
+        android:useDefaultMargins="true">
+
+    <!-- Fila 0: el EditText va PRIMERO para quedar detras del TextView -->
+        <EditText
+            android:id="@+id/amountEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
+            android:digits="0123456789"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="6"
+            android:minHeight="48dp"
+            android:hint="@string/amount_field_label"
+            android:contentDescription="@string/amount_field_label"
+            android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+    <TextView
+        android:id="@+id/amountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:background="@color/amount_background"
+        android:elevation="@dimen/view_elevation"
+        android:hint="@string/enter_amount"
+        android:padding="@dimen/textview_padding"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
+        android:textColor="@color/on_colored_background"
+        android:textColorHint="@color/on_colored_background"
+        android:importantForAccessibility="no"
+        tools:text="$56.32" />
+
+    <!-- Fila 1: porcentaje -->
+    <TextView
+        android:id="@+id/percentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_gravity="center_vertical|end"
+        android:text="@string/tip_percentage"
+        android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+        <SeekBar
+            android:id="@+id/percentSeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/seekbar_height"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:max="30"
+            android:progress="15"
+            android:progressTint="?attr/colorSecondary"
+            android:thumbTint="?attr/colorSecondary"
+            android:contentDescription="@string/percent_seekbar_label" />
+
+
+    <!-- Fila 2: propina -->
+    <TextView
+        android:id="@+id/tipLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:layout_gravity="center_vertical|end"
+        android:text="@string/tip"
+        android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+    <TextView
+        android:id="@+id/tipTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill_horizontal"
+        android:background="@color/result_background"
+        android:elevation="@dimen/view_elevation"
+        android:gravity="center"
+        android:padding="@dimen/textview_padding"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
+        android:textColor="@color/on_colored_background"
+        tools:text="$14.08" />
+
+    <!-- Fila 3: total -->
+    <TextView
+        android:id="@+id/totalLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:layout_gravity="center_vertical|end"
+        android:text="@string/total"
+        android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+    <TextView
+        android:id="@+id/totalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill_horizontal"
+        android:background="@color/result_background"
+        android:elevation="@dimen/view_elevation"
+        android:gravity="center"
+        android:padding="@dimen/textview_padding"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
+        android:textColor="@color/on_colored_background"
+        tools:text="$70.40" />
+
+    </GridLayout>
+
+</LinearLayout>
+</file>
+
+</files>
